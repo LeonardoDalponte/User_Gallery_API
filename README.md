@@ -1,0 +1,1 @@
+Primeiro projeto feito em typeScript, ultilizando node.js e nest.js. Se baseia em uma galeria, onde o usuario pode fazer o upload de suas imagens, editar, excluir e etc...  e pode fazer o mesmo nos dados de sua conta.
