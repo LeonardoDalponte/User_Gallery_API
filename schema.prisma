@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int      @id @default(autoincrement()) @map("user_id")
+  name       String   @map("user_name")
+  email      String   @unique @map("user_email")
+  password   String   @map("user_password")
+  dt_created DateTime @default(now()) @map("created_at")
+  images     Image[]
+
+  @@map("users")
+}
+
+model Image {
+  imageId     Int      @id @default(autoincrement()) @map("image_id")
+  imageName   String   @map("image_name")
+  imageStored String   @map("image_stored")
+  dt_created  DateTime @default(now()) @map("dt_created")
+  imageSize   Float    @map("image_size")
+  author      User     @relation(fields: [authorId], references: [id])
+  authorId    Int
+
+  @@map("images")
+}

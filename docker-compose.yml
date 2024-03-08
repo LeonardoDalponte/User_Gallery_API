@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  db:
+    build: .
+    container_name: userGalleryNest
+    image: postgres:latest
+    ports:
+      - '5433:5432'
+    volumes:
+        - project-nest:/data/postgres
+    environment:
+      POSTGRES_PASSWORD: "123"
+      POSTGRES_USER: "pg"
+     
+
+volumes:
+  project-nest:
